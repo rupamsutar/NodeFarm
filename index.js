@@ -1,5 +1,6 @@
 const fs = require("fs");
 const http = require("http");
+const url = require("url");
 
 // fs.readFile("./txt/start.txt", "utf-8", (err, data) => {
 //     fs.readFile(`./txt/${data}.txt`, "utf-8", (err, data2) => {
@@ -12,10 +13,23 @@ const http = require("http");
 // });
 
 const server = http.createServer((req, res) => {
-    console.log(req)
-    res.end("Hello from the server");
+    console.log(req.url);
+    if (req.url === "/" || req.url === "/overview") {
+        res.end("This is an overview");
+    } else if (req.url === "/product"){
+        res.end("This is our product");
+    } else {
+        res.writeHead (404, {
+            'Content-type': "text/html",
+            'Name': 'Rupam Sutar'
+        });
+        res.end("<h1>Page Not Found !</h1>");
+    }
 })
 
 server.listen(8000, "127.0.0.1", () => {
     console.log("Listening to the server on port 8000");
 })
+
+
+
