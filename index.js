@@ -1,5 +1,6 @@
 const fs = require("fs");
 const http = require("http");
+const url = require("url");
 
 // const textIn = fs.readFileSync("./txt/input.txt", "utf-8");
 
@@ -24,9 +25,18 @@ const http = require("http");
 /////////////////////////////////  Creating Server  ///////////////////////////////////////
 
 const server = http.createServer((req, res) => {
-    res.end("Hello from the server !");
+    const pathName = req.url;
+
+    if(pathName === "/" || pathName === "/overview") {
+        res.end("This is an overview page !");
+    } else if (pathName === "/product") {
+        res.end ("This is the Products display page !")
+    } else {
+        res.end("Page not found !")
+    }
 })
 
 server.listen(8000, "127.0.0.1", () => {
+    res.writeHead("")
     console.log("Listening on port 8000");
 })
