@@ -16,7 +16,7 @@ const replaceTemplate = require("./modules/modules.js")
 // });
 
 
-
+ 
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
 const dataObj = JSON.parse(data);
 
